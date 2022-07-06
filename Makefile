@@ -16,3 +16,9 @@ lint:
 uninstall-code:
 	python3 -m pip uninstall hexlet-code
 
+pytest:
+	poetry run pytest
+
+coverage:
+	poetry run pytest --cov
+
