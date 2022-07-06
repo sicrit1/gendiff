@@ -23,4 +23,4 @@ coverage:
 	poetry run pytest --cov
 
 cc-coverage:
-	poetry run coverage xml
+	poetry run pytest --cov-report xml
