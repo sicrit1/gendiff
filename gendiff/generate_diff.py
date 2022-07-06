@@ -1,31 +1,52 @@
-import json
+# -*- coding:utf-8 -*-
+
+
+from gendiff.load_data import load_data
+from gendiff.get_string import get_string
+
+
+STATUS = 'status'
+ADDED = 'added'
+NESTED = 'nested'
+REMOVED = 'removed'
+UNCHANGED = 'unchanged'
+UPDATED = 'updated'
+VALUE = 'value'
+UPDATED_VALUE = 'updated_value'
+ERROR = 'Object has no STATUS'
+
+
+def calc_diff(dict1, dict2):
+    diff = {}
+    data_inter = dict1.keys() & dict2.keys()
+    data_diff1 = dict1.keys() - dict2.keys()
+    data_diff2 = dict2.keys() - dict1.keys()
+    for key in data_inter:
+        diff[key] = compare(dict1[key], dict2[key])
+    for key in data_diff1:
+        diff[key] = {STATUS: REMOVED, VALUE: dict1[key]}
+    for key in data_diff2:
+        diff[key] = {STATUS: ADDED, VALUE: dict2[key]}
+    return diff
+
+
+def compare(item1, item2):
+    if isinstance(item1, dict) and isinstance(item2, dict):
+        return {STATUS: NESTED, VALUE: calc_diff(item1, item2)}
+    if item1 == item2:
+        return {STATUS: UNCHANGED, VALUE: item1}
+    return {STATUS: UPDATED, VALUE: item1, UPDATED_VALUE: item2}
 
 
 def generate_diff(file_path1, file_path2):
-    with open(file_path1) as f1:
-        file1 = json.load(f1)
-    with open(file_path2) as f2:
-        file2 = json.load(f2)
-    data_inter = file1.keys() & file2.keys()
-    data_diff1 = file1.keys() - file2.keys()
-    data_diff2 = file2.keys() - file1.keys()
-    diff_str = ''
-    for i in data_inter:
-        if file1[i] == file2[i]:
-            diff_str += f'  {str(i)}: {str(file1[i])}\n'
-        else:
-            diff_str += f'- {str(i)}: {str(file1[i])}\n+ {str(i)}: {str(file2[i])}\n'
-    for n in data_diff1:
-        diff_str += f'- {str(n)}: {str(file1[n])}\n'
-    for x in data_diff2:
-        diff_str += f'+ {str(x)}: {str(file2[x])}\n'
-    deff_json = '{\n' + diff_str.lower() + '}'
-    return deff_json
+    file1 = load_data(file_path1)
+    file2 = load_data(file_path2)
+    diff = calc_diff(file1, file2)
+    sorted_diff = sorted_dict(diff)
+    diff_string = get_string(sorted_diff)
+    return diff_string
 
 
-def main():
-    generate_diff(file_path1, file_path2)
-
-
-if __name__ == '__main__':
-    main()
+def sorted_dict(item):
+    sorted_tuple = sorted(item.items(), key=lambda x: x[0])
+    return dict(sorted_tuple)
