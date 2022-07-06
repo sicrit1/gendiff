@@ -26,9 +26,9 @@ jobs:
         run: |
           make lint
       - name: Test & publish code coverage
-        uses: paambaati/codeclimate-action@v2.7.4
+        uses: paambaati/codeclimate-action@v3.0.0
         env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+          CC_TEST_REPORTER_ID: 64fff879ba21497dd71d681400cc5f43f236c0836a01a8aeca957d3916fcfe3a
         with:
-          coverageCommand: make test-coverage
+          coverageCommand: make coverage
           debug: true
