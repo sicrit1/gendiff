@@ -1,0 +1,9 @@
+a: 1
+b: 3
+c: 3
+d: null
+e:
+ f: 2
+ g: 3
+ i: hexlet
+ k: true

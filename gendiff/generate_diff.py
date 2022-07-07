@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 
 
-from gendiff.load_data import load_data
+from gendiff.formaters.load_data import load_data
 from gendiff.get_string import get_string
 
 
@@ -48,5 +48,11 @@ def generate_diff(file_path1, file_path2):
 
 
 def sorted_dict(item):
-    sorted_tuple = sorted(item.items(), key=lambda x: x[0])
-    return dict(sorted_tuple)
+    if isinstance(item, dict):
+        item = dict(sorted(item.items(), key=lambda x: x[0]))
+        for k, v in item.items():
+            v = sorted_dict(v)
+            item[k] = v
+        return item
+    else:
+        return item
