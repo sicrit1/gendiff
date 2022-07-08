@@ -84,4 +84,3 @@ def format_dic(item, replacer, depth=0):
             )
     result = itertools.chain('{', list_string, [current_indent + '}'])
     return '\n'. join(result)
-
