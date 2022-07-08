@@ -12,6 +12,11 @@ cases = [
         'tests/fixtures/test_file4.yaml',
         'tests/fixtures/result_for_yaml.txt'
     ),
+    (
+        'tests/fixtures/test_file5.json',
+        'tests/fixtures/test_file6.json',
+        'tests/fixtures/result_for_json2.txt'
+    ),
 ]
 
 
