@@ -13,7 +13,7 @@ ERROR = 'Object has no STATUS'
 INDENT_STEP = 4
 
 
-def stylish(item, replacer=' ', add='+ ', remove='- '):  # noqa: C901
+def stylish_format(item, replacer=' ', add='+ ', remove='- '):  # noqa: C901
 
     def iter_(current_item, depth):
         if not isinstance(current_item, dict):

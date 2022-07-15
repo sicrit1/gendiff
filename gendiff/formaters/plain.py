@@ -12,7 +12,7 @@ UPDATED_LINE = "Property '{0}' was updated. From {1} to {2}"
 COMPLEX = "[complex value]"
 
 
-def plain(item):
+def plain_format(item):
     list_plain = []
     for key, val in sorted(flatten(item).items()):
         value = format_value(val[VALUE])

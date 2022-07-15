@@ -12,7 +12,7 @@ def parser_file():
         '-f',
         '--format',
         type=str,
-        choices=('stylish', 'plain'),
+        choices=('stylish', 'plain', 'json'),
         default='stylish',
         help='set format of output',
     )

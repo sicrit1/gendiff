@@ -1,10 +1,12 @@
-from gendiff.formaters.stylish import stylish
-from gendiff.formaters.plain import plain
+from gendiff.formaters.stylish import stylish_format
+from gendiff.formaters.plain import plain_format
+from gendiff.formaters.json import json_format
 
 
 FORMATS = {
-    'plain': plain,
-    'stylish': stylish,
+    'plain': plain_format,
+    'stylish': stylish_format,
+    'json': json_format
 }
 
 ERROR = 'Output format {0} is invalid. Chose one of {1}'
