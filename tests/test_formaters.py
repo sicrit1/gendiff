@@ -6,6 +6,7 @@ from tests.fixtures.test_file_stylish import data
 result_path_stylish = 'tests/fixtures/stylish_result_for_json2.txt'
 result_path_plain = 'tests/fixtures/plain_result_for_json2.txt'
 
+
 def test_stylish_format():
     with open(result_path_stylish) as f:
         file_result = f.read()
