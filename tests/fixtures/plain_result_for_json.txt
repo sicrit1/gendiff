@@ -1,0 +1,3 @@
+Property 'a' was updated. From 1234 to 12
+Property 'c' was updated. From false to true
+Property 'f.g' was updated. From 1 to 2

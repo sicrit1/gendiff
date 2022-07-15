@@ -1,0 +1,4 @@
+Property 'b' was updated. From 2 to 3
+Property 'e.g' was updated. From 4 to 3
+Property 'e.i' was added with value: 'hexlet'
+Property 'e.k' was added with value: true

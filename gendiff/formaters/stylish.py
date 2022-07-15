@@ -1,5 +1,4 @@
 import itertools
-from gendiff.is_bool import is_bool
 
 
 STATUS = 'status'
@@ -84,3 +83,12 @@ def format_dic(item, replacer, depth=0):
             )
     result = itertools.chain('{', list_string, [current_indent + '}'])
     return '\n'. join(result)
+
+
+def is_bool(item):
+    if type(item) is bool:
+        return str(item).lower()
+    elif item is None:
+        return 'null'
+    else:
+        return item

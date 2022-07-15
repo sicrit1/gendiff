@@ -2,7 +2,7 @@
 
 
 from gendiff.formaters.load_data import load_data
-from gendiff.formaters.stylish import stylish
+from gendiff.formaters.call_formater import call_formater
 
 
 STATUS = 'status'
@@ -38,12 +38,12 @@ def compare(item1, item2):
     return {STATUS: UPDATED, VALUE: item1, UPDATED_VALUE: item2}
 
 
-def generate_diff(file_path1, file_path2, formater=stylish):
+def generate_diff(file_path1, file_path2, output_format='stylish'):
     file1 = load_data(file_path1)
     file2 = load_data(file_path2)
     diff = calc_diff(file1, file2)
     sorted_diff = sorted_dict(diff)
-    return formater(sorted_diff)
+    return call_formater(sorted_diff, output_format)
 
 
 def sorted_dict(item):
